@@ -1,0 +1,230 @@
+/* GERAIS E FUNDO */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* Importação de uma fonte manuscrita, se desejar um estilo mais próximo do que foi desenhado */
+/* @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap'); */
+
+
+:root {
+    --bg-color: #0A142D; 
+    --card-bg: #1A284A; 
+    --text-color: #E0E0E0;
+    --primary-color: #007BFF; 
+    --secondary-color: #0056B3; 
+    --button-gradient-start: #007BFF; 
+    --button-gradient-end: #0056B3; 
+    --input-bg: #2C3E50;
+    --border-color: #34495E;
+    --success-color: #28A745;
+    --error-color: #DC3545;
+    --hub-footer-bg: #212F45;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    padding: 20px;
+}
+
+/* EFEITO DE FUNDO (Partículas) - Aplicado em todas as telas */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 123, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* ------------------------------------------------------------------- */
+/* ESTILO DA TELA DE LOGIN (index.html)              */
+/* ------------------------------------------------------------------- */
+
+.key-container {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px 30px; 
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.header { text-align: center; margin-bottom: 20px; }
+.logo-icon { font-size: 3rem; padding: 10px; border-radius: 50%; color: white; background-color: var(--primary-color); border: 2px solid var(--primary-color); }
+.title { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 5px; color: white; }
+.subtitle { text-align: center; font-size: 0.9rem; font-weight: 300; margin-bottom: 30px; }
+.input-group { display: flex; align-items: center; background-color: var(--input-bg); border-radius: 10px; padding: 10px 15px; margin-bottom: 20px; border: 1px solid transparent; transition: border 0.3s; }
+.input-group:focus-within { border: 1px solid var(--primary-color); }
+.input-group i { color: var(--primary-color); margin-right: 10px; }
+#api-key { background: none; border: none; outline: none; color: var(--text-color); flex-grow: 1; font-size: 1rem; }
+#confirmar-btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; color: white; background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end)); transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4); }
+#confirmar-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 123, 255, 0.6); }
+.example-text { font-size: 0.75rem; text-align: center; color: #999; margin-top: 15px; }
+.info-text { font-size: 0.8rem; text-align: center; color: #777; margin-top: 5px; }
+.message-area { margin-top: 20px; padding: 10px; border-radius: 8px; font-size: 0.9rem; text-align: center; display: none; }
+.message-success { background-color: rgba(40, 167, 69, 0.1); color: var(--success-color); border: 1px solid var(--success-color); }
+.message-error { background-color: rgba(220, 53, 69, 0.1); color: var(--error-color); border: 1px solid var(--error-color); }
+
+/* ------------------------------------------------------------------- */
+/* ESTILO DA TELA HUB (hub.html)                   */
+/* ------------------------------------------------------------------- */
+
+.hub-content {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    padding-bottom: 100px; 
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    position: relative; 
+    min-height: 500px;
+    text-align: center; /* Centraliza o conteúdo principal */
+}
+
+/* NOVO ESTILO PARA O TÍTULO "SPARK METHODS" INCLINADO/TORTUOSO */
+.hub-header-custom {
+    margin-bottom: 30px;
+    padding: 20px 0;
+    /* Opção de fonte manuscrita:
+    font-family: 'Permanent Marker', cursive; 
+    */
+}
+
+.spark-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    transform: rotate(-4deg); /* Simula a inclinação do desenho */
+    display: inline-block;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Sombra azul para destaque */
+}
+
+.methods-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    transform: rotate(3deg); /* Inclinação oposta */
+    display: inline-block;
+    margin-left: 20px;
+    letter-spacing: 3px;
+    text-decoration: underline; /* Adiciona uma sublinha sutil */
+    text-underline-offset: 5px;
+}
+
+.hub-area-main {
+    text-align: left; /* Restaura o alinhamento para o conteúdo do Hub */
+}
+
+.hub-section {
+    background-color: var(--input-bg);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.hub-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.code-area {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #111A2C; 
+    border-radius: 8px;
+    border: 1px solid #1E2D47;
+}
+
+.code-area h4 {
+    color: #4CAF50; 
+    margin-bottom: 10px;
+}
+
+.code-area textarea {
+    width: 100%;
+    min-height: 100px;
+    background-color: #0A142D;
+    color: #A0C0F0;
+    border: 1px solid #1E2D47;
+    padding: 10px;
+    border-radius: 5px;
+    resize: none;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.copy-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* BARRA DE NAVEGAÇÃO INFERIOR (FOOTER) */
+.nav-bar-footer {
+    position: absolute; 
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; 
+    height: 60px;
+    background-color: var(--hub-footer-bg); 
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+.nav-item {
+    color: #999;
+    font-size: 1.2rem;
+    padding: 8px;
+    transition: color 0.3s;
+}
+
+.nav-item:hover, .nav-item.active {
+    color: var(--primary-color);
+}
+
+.hub-center-btn {
+    font-size: 1.8rem;
+    color: white;
+    background: linear-gradient(90deg, #007BFF, #00CFFF); 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px; 
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.6);
+}
+
+.hidden {
+    display: none !important;
+}

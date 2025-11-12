@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Exclusivo Spark - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-container" class="key-container">
+        <div class="header">
+            <i class="fa-solid fa-shield-halved logo-icon"></i>
+        </div>
+        <h2 class="title">ACESSO EXCLUSIVO SPARK</h2>
+        <p class="subtitle">Insira sua chave de acesso para continuar</p>
+
+        <form id="key-form">
+            <div class="input-group">
+                <i class="fa-solid fa-key"></i>
+                <input type="text" id="api-key" placeholder="Digite sua chave de acesso" required>
+            </div>
+            
+            <button type="submit" id="confirmar-btn">
+                <i class="fa-solid fa-lock"></i> Confirmar Acesso
+            </button>
+            
+            <p class="example-text">Exemplo: KEY-SPARKXXXXX-XXXXXX-09</p>
+            <p class="info-text">Apenas usuários com chaves válidas podem acessar o Hub</p>
+            
+            <div id="message" class="message-area"></div>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

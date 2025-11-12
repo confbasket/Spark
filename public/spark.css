@@ -1,0 +1,228 @@
+/* GERAIS E FUNDO */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color: #0A142D; /* Azul escuro muito escuro */
+    --card-bg: #1A284A; /* Azul escuro para o card */
+    --text-color: #E0E0E0;
+    --primary-color: #007BFF; /* Azul principal */
+    --secondary-color: #0056B3; 
+    --button-gradient-start: #007BFF; 
+    --button-gradient-end: #00CFFF; 
+    --input-bg: #2C3E50;
+    --border-color: #34495E;
+    --success-color: #28A745;
+    --error-color: #DC3545;
+    --hub-footer-bg: #212F45;
+    --generator-btn-color: #00A9FF; /* Azul mais claro/vibrante para o botão Gerar */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    padding: 20px;
+}
+
+/* EFEITO DE FUNDO (Partículas) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 123, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* --- TELA DE LOGIN (index.html) --- */
+
+.key-container {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 40px 30px; 
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    position: relative;
+    text-align: center;
+}
+
+.logo-icon { font-size: 3rem; padding: 10px; border-radius: 50%; color: white; background-color: var(--primary-color); border: 2px solid var(--primary-color); }
+.title { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; color: white; }
+.subtitle { font-size: 0.9rem; font-weight: 300; margin-bottom: 30px; }
+.input-group { display: flex; align-items: center; background-color: var(--input-bg); border-radius: 10px; padding: 10px 15px; margin-bottom: 20px; border: 1px solid transparent; transition: border 0.3s; }
+.input-group:focus-within { border: 1px solid var(--primary-color); }
+.input-group i { color: var(--primary-color); margin-right: 10px; }
+#api-key { background: none; border: none; outline: none; color: var(--text-color); flex-grow: 1; font-size: 1rem; }
+#confirmar-btn { width: 100%; padding: 15px; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; color: white; background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end)); transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4); }
+#confirmar-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 123, 255, 0.6); }
+.message-area { margin-top: 20px; padding: 10px; border-radius: 8px; font-size: 0.9rem; display: none; }
+.message-error { background-color: rgba(220, 53, 69, 0.1); color: var(--error-color); border: 1px solid var(--error-color); }
+.example-text { font-size: 0.75rem; color: #999; margin-top: 15px; }
+.info-text { font-size: 0.8rem; color: #777; margin-top: 5px; }
+
+/* --- TELA HUB (hub.html) - GERADOR DE SCRIPT --- */
+
+.hub-content {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px;
+    padding-bottom: 100px; 
+    width: 90%;
+    max-width: 450px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    position: relative; 
+    min-height: 400px;
+    text-align: center;
+}
+
+.hub-header-custom { margin-bottom: 30px; padding: 0; }
+.spark-title { font-size: 2.2rem; font-weight: 700; color: white; letter-spacing: 5px; display: block; }
+.methods-title { font-size: 1.5rem; font-weight: 300; color: var(--primary-color); letter-spacing: 2px; display: block; }
+
+/* ÍCONE CENTRAL */
+.main-icon {
+    font-size: 4rem;
+    color: white;
+    background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
+    padding: 15px 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4);
+    margin-bottom: 20px;
+}
+
+.tool-title { font-size: 1.4rem; color: white; margin-bottom: 5px; }
+.tool-subtitle { font-size: 0.85rem; color: #99AAB5; margin-bottom: 30px; padding: 0 10px; }
+
+/* INPUT DO WEBHOOK */
+.input-group-hub { margin-bottom: 10px; width: 100%; }
+#webhook-url {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--input-bg);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#webhook-url:focus { outline: none; border-color: var(--primary-color); }
+.info-text-hub { font-size: 0.7rem; color: #777; margin-top: 5px; margin-bottom: 20px; }
+
+/* BOTÃO GERAR SCRIPT (AZUL CONSISTENTE) */
+.generate-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    /* Gradiente Azul Consistente */
+    background: linear-gradient(90deg, var(--button-gradient-start), var(--generator-btn-color)); 
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4); 
+}
+
+.generate-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(0, 123, 255, 0.6); }
+
+
+/* --- BARRA DE NAVEGAÇÃO INFERIOR --- */
+
+.nav-bar-footer {
+    position: absolute; 
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; 
+    height: 60px;
+    background-color: var(--hub-footer-bg); 
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+.nav-item { color: #999; font-size: 1.2rem; padding: 8px; transition: color 0.3s; }
+.nav-item:hover, .nav-item.active { color: var(--primary-color); }
+
+.hub-center-btn {
+    font-size: 1.8rem;
+    color: white;
+    /* Botão central Azul Consistente */
+    background: linear-gradient(90deg, var(--button-gradient-start), var(--generator-btn-color)); 
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px; 
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.6);
+}
+
+/* --- MENSAGEM DE ERRO/PROTEÇÃO ESTILIZADA --- */
+
+.styled-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.styled-alert-box {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--border-color);
+}
+
+.styled-alert-box p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--error-color);
+}
+
+.styled-alert-box button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none !important;
+}

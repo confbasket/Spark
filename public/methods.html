@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Hub - Métodos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --bg-color: #0A142D; 
+            --card-bg: #1A284A; 
+            --text-color: #E0E0E0;
+            --primary-color: #007BFF; 
+            --secondary-color: #0056B3; 
+            --hub-footer-bg: #212F45;
+            --border-color: #34495E;
+            --input-bg: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .hub-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            padding-bottom: 100px; 
+            width: 95%;
+            max-width: 750px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color);
+            position: relative; 
+            min-height: 500px;
+            text-align: center;
+        }
+        
+        /* CABEÇALHO */
+        .hub-header-custom { margin-bottom: 30px; }
+        .spark-title { font-size: 2.2rem; font-weight: 700; color: white; letter-spacing: 5px; display: block; }
+        .methods-title { font-size: 1.5rem; font-weight: 300; color: var(--primary-color); letter-spacing: 2px; display: block; }
+        .section-subtitle { font-size: 0.9rem; color: #99AAB5; margin-bottom: 30px; }
+
+
+        /* ESTILOS DA LISTA SIMPLES */
+        .method-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            padding: 10px 0;
+        }
+
+        .method-item {
+            background-color: var(--input-bg);
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .method-item:hover:not(.disabled) {
+            background-color: #213050;
+            border-color: var(--primary-color);
+        }
+
+        .method-item.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .item-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 5px;
+            color: white;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .premium-tag { background-color: #FFC107; } 
+        .ultra-tag { background-color: #DC3545; } 
+        .soon-tag { background-color: #6C757D; } 
+
+        .item-title {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: #B0B0B0;
+            margin-bottom: 10px;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .item-status {
+            font-size: 0.8rem;
+            color: #99AAB5;
+        }
+
+        .item-access-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .item-access-btn:hover:not(:disabled) {
+            background-color: var(--secondary-color);
+        }
+
+        .disabled-btn {
+            background-color: #6C757D;
+            cursor: not-allowed;
+        }
+        
+        /* BARRA DE NAVEGAÇÃO INFERIOR */
+        .nav-bar-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--hub-footer-bg);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .nav-item {
+            color: #99AAB5;
+            text-decoration: none;
+            font-size: 1.5rem;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+        }
+        
+        .hub-center-btn {
+            color: white;
+            background: radial-gradient(circle, #ff00ff 0%, #8a2be2 100%);
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+            font-size: 1.3rem;
+        }
+
+        /* ALERTA (Para esta página) */
+        .styled-alert-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;
+        }
+        .styled-alert-box {
+            background: var(--card-bg); padding: 30px; border-radius: 15px; 
+            text-align: center; border: 2px solid var(--primary-color);
+        }
+        .styled-alert-box p {
+            color: var(--text-color); margin-bottom: 20px; font-size: 1.1rem;
+        }
+        .styled-alert-box button {
+            background-color: var(--primary-color); color: white; border: none; 
+            padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="styled-alert" class="styled-alert-overlay hidden">
+        <div class="styled-alert-box">
+            <p>Acesso negado. Por favor, insira sua chave.</p>
+            <button id="alert-ok-btn">OK</button>
+        </div>
+    </div>
+    
+    <div id="methods-container" class="hub-content methods-list-view hidden"> 
+
+        <div class="hub-header-custom">
+            <h1 class="spark-title">SPARK</h1>
+            <h2 class="methods-title">MÉTODOS</h2>
+        </div>
+
+        <p class="section-subtitle">Acesse aqui todos os métodos disponíveis em nossos servidores.</p>
+
+        <div class="method-list-container">
+            
+            <div class="method-item" data-method-id="1">
+                <span class="item-tag premium-tag"><i class="fa-solid fa-star"></i> NEW</span>
+                <h3 class="item-title">EM BREVE</h3>
+                <p class="item-description" id="desc-1">Mais métodos de alta performance serão adicionados em breve.</p>
+                <div class="item-footer">
+                    <span class="item-status">Status: Online</span>
+                    <button class="item-access-btn" onclick="copyDescription('1', this)"><i class="fa-solid fa-copy"></i> Copiar</button>
+                </div>
+            </div>
+
+            <div class="method-item" data-method-id="2">
+                <span class="item-tag ultra-tag">NEW</span>
+                <h3 class="item-title">EM BREVE</h3>
+                <p class="item-description" id="desc-2">Mais métodos de alta performance serão adicionados em breve.</p>
+                <div class="item-footer">
+                    <span class="item-status">Status: </span>
+                    <button class="item-access-btn" onclick="copyDescription('2', this)"><i class="fa-solid fa-copy"></i> Copiar</button>
+                </div>
+            </div>
+
+            <div class="method-item disabled">
+                <span class="item-tag ultra-tag">NEW</span>
+                <h3 class="item-title">EM BREVE</h3>
+                <p class="item-description" id="desc-3">Mais métodos de alta performance serão adicionados em breve.</p>
+                <div class="item-footer">
+                    <span class="item-status">Status: Offline</span>
+                    <button class="item-access-btn" onclick="copyDescription('3', this)"><i class="fa-solid fa-copy"></i> Copiar</button>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="nav-bar-footer">
+            <a href="hub.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+            <a href="methods.html" class="nav-item active"><i class="fa-solid fa-code-branch"></i></a> 
+            <a href="#" class="nav-item hub-center-btn"><i class="fa-solid fa-star"></i></a>
+            <a href="scripts.html" class="nav-item"><i class="fa-solid fa-gear"></i></a> 
+            <a id="logout-link" href="#" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // --- SISTEMA DE LOGOUT E PROTEÇÃO ---
+        const methodsContainer = document.getElementById('methods-container');
+        const styledAlert = document.getElementById('styled-alert');
+        const alertOkBtn = document.getElementById('alert-ok-btn');
+        const logoutLink = document.getElementById('logout-link');
+
+        const storedToken = localStorage.getItem('spark_session_token');
+        
+        // 1. Proteção: Redireciona se não estiver logado
+        if (!storedToken) {
+            styledAlert.classList.remove('hidden');
+            alertOkBtn.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        } else {
+            methodsContainer.classList.remove('hidden');
+        }
+
+        // 2. Logout: Remove o token e redireciona
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('spark_session_token');
+            window.location.href = 'index.html';
+        });
+
+        // 3. FUNÇÃO DE COPIAR TEXTO (Métodos)
+        function copyDescription(methodId, buttonElement) {
+            const descriptionElement = document.getElementById('desc-' + methodId);
+            const textToCopy = descriptionElement.textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                buttonElement.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
+                setTimeout(() => {
+                    buttonElement.innerHTML = '<i class="fa-solid fa-copy"></i> Copiar';
+                }, 2000);
+            }).catch(err => {
+                console.error('Erro ao copiar: ', err);
+                alert('Erro ao copiar descrição.');
+            });
+        }
+    </script>
+</body>
+</html>

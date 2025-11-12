@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Hub</title>
+    <link rel="stylesheet" href="spark.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="styled-alert" class="styled-alert-overlay hidden">
+        <div class="styled-alert-box">
+            <p>Acesso negado. Por favor, insira sua chave.</p>
+            <button id="alert-ok-btn">OK</button>
+        </div>
+    </div>
+    
+    <div id="hub-container" class="hub-content hidden"> 
+
+        <div class="hub-header-custom">
+            <h1 class="spark-title">SPARK</h1>
+            <h2 class="methods-title">METHODS</h2>
+        </div>
+
+        <div class="empty-state">
+            <i class="fa-solid fa-house main-icon"></i>
+            <h3 class="tool-title">Bem-vindo ao Spark Hub!</h3>
+            <p class="tool-subtitle">Use o menu abaixo para navegar por seus scripts e ferramentas exclusivas.</p>
+        </div>
+
+        <div class="nav-bar-footer">
+            <a href="hub.html" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+            <a href="methods.html" class="nav-item"><i class="fa-solid fa-code-branch"></i></a> 
+            <a href="#" class="nav-item hub-center-btn"><i class="fa-solid fa-star"></i></a>
+            <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i></a>
+            <a id="logout-link" href="#" class="nav-item"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DE PROTEÇÃO E LOGOUT (MANTIDA) ---
+        const hubContainer = document.getElementById('hub-container');
+        const styledAlert = document.getElementById('styled-alert');
+        const alertOkBtn = document.getElementById('alert-ok-btn');
+        const logoutLink = document.getElementById('logout-link');
+
+        const storedToken = localStorage.getItem('spark_session_token');
+        
+        if (!storedToken) {
+            hubContainer.classList.add('hidden');
+            styledAlert.classList.remove('hidden');
+            
+            alertOkBtn.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        } else {
+            hubContainer.classList.remove('hidden');
+        }
+
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('spark_session_token');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
